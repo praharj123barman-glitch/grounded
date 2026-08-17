@@ -1,0 +1,32 @@
+"""Small, safe tools the agent can call. A calculator for figures pulled from the
+reports (percentages, growth, ratios) without trusting the LLM's arithmetic.
+"""
+from __future__ import annotations
+
+import ast
+import operator
+
+_OPS = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Div: operator.truediv,
+    ast.Pow: operator.pow,
+    ast.USub: operator.neg,
+    ast.Mod: operator.mod,
+}
+
+
+def _eval(node):
+    if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+        return node.value
+    if isinstance(node, ast.BinOp) and type(node.op) in _OPS:
+        return _OPS[type(node.op)](_eval(node.left), _eval(node.right))
+    if isinstance(node, ast.UnaryOp) and type(node.op) in _OPS:
+        return _OPS[type(node.op)](_eval(node.operand))
+    raise ValueError("unsupported expression")
+
+
+def calculate(expression: str) -> float:
+    """Evaluate a plain arithmetic expression safely (no names, no calls)."""
+    return float(_eval(ast.parse(expression, mode="eval").body))

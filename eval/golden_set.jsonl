@@ -1,0 +1,14 @@
+{"id": "q01", "question": "What was Meridian's consolidated revenue in FY2025?", "reference_answer": "48,200 million rupees.", "relevant_substrings": ["48,200"], "answerable": true}
+{"id": "q02", "question": "By what percentage did revenue grow over FY2024?", "reference_answer": "14 percent.", "relevant_substrings": ["14 percent"], "answerable": true}
+{"id": "q03", "question": "What was the EBITDA margin in FY2025?", "reference_answer": "19.0 percent, up from 17.8 percent.", "relevant_substrings": ["19.0 percent"], "answerable": true}
+{"id": "q04", "question": "What was profit after tax and how much did it grow?", "reference_answer": "5,420 million rupees, up 21 percent.", "relevant_substrings": ["5,420"], "answerable": true}
+{"id": "q05", "question": "What was the basic earnings per share?", "reference_answer": "27.4 rupees.", "relevant_substrings": ["27.4"], "answerable": true}
+{"id": "q06", "question": "What dividend did the Board recommend?", "reference_answer": "6.50 rupees per equity share.", "relevant_substrings": ["6.50"], "answerable": true}
+{"id": "q07", "question": "How much revenue did the Industrial Automation segment contribute?", "reference_answer": "27,900 million rupees, about 58 percent of the total.", "relevant_substrings": ["27,900"], "answerable": true}
+{"id": "q08", "question": "What was capital expenditure and where was it directed?", "reference_answer": "3,800 million rupees, mainly to the Pune and Halol facilities.", "relevant_substrings": ["3,800", "Halol"], "answerable": true}
+{"id": "q09", "question": "What was the net debt to EBITDA ratio at year end?", "reference_answer": "0.50 times.", "relevant_substrings": ["0.50 times"], "answerable": true}
+{"id": "q10", "question": "How much cash and cash equivalents did the company hold?", "reference_answer": "7,900 million rupees.", "relevant_substrings": ["7,900"], "answerable": true}
+{"id": "q11", "question": "What is the revenue growth guidance for FY2026?", "reference_answer": "11 to 13 percent.", "relevant_substrings": ["11 to 13 percent"], "answerable": true}
+{"id": "q12", "question": "What share of components is sourced from outside India?", "reference_answer": "Roughly 35 percent.", "relevant_substrings": ["35 percent"], "answerable": true}
+{"id": "q13", "question": "Who is the Chief Executive Officer of Meridian Industries?", "reference_answer": "Not stated in the document.", "relevant_substrings": [], "answerable": false}
+{"id": "q14", "question": "What was the company's revenue in FY2023?", "reference_answer": "Not stated in the document.", "relevant_substrings": [], "answerable": false}

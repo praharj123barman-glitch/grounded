@@ -1,0 +1,32 @@
+name: evals
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Unit tests (offline)
+        run: pytest -q
+
+      - name: RAG eval regression gate (only if a key is configured)
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          if [ -z "$GOOGLE_API_KEY" ]; then
+            echo "No GOOGLE_API_KEY secret set; skipping live evals."
+            exit 0
+          fi
+          python -m grounded.ingest --source sample
+          python -m eval.run_evals
+          python -m eval.regression_gate

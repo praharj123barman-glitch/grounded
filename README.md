@@ -1,5 +1,8 @@
 # Grounded
 
+**Live demo:** https://grounded-7vi4.onrender.com/docs (interactive API) ·
+try `https://grounded-7vi4.onrender.com/ask?q=What+was+Meridian's+FY2025+revenue`
+
 An agentic RAG research assistant that answers questions over a document corpus,
 cites the exact source for every claim, and refuses when the context does not
 support an answer. The headline is not the chatbot; it is a reproducible

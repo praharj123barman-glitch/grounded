@@ -62,14 +62,8 @@ def _pipeline():
     return build_default_pipeline()
 
 
-@app.get("/health")
-def health() -> dict:
-    return {"status": "ok"}
-
-
-@app.post("/ask")
-def ask(req: AskRequest) -> dict:
-    guard = scan(req.question)
+def _answer(question: str, k: int | None) -> dict:
+    guard = scan(question)
     if guard["blocked"]:
         return {
             "answered": False,
@@ -78,5 +72,29 @@ def ask(req: AskRequest) -> dict:
             "confidence": 0.0,
             "blocked": True,
         }
-    answer, chunks = _pipeline().run(req.question, k=req.k)
+    answer, chunks = _pipeline().run(question, k=k)
     return {**answer.model_dump(), "retrieved": len(chunks), "pii_flags": guard["pii"]}
+
+
+@app.get("/")
+def root():
+    """Send visitors to the interactive API docs."""
+    from fastapi.responses import RedirectResponse
+
+    return RedirectResponse(url="/docs")
+
+
+@app.get("/health")
+def health() -> dict:
+    return {"status": "ok"}
+
+
+@app.get("/ask")
+def ask_get(q: str, k: int | None = None) -> dict:
+    """Browser-friendly: /ask?q=What+was+FY2025+revenue"""
+    return _answer(q, k)
+
+
+@app.post("/ask")
+def ask_post(req: AskRequest) -> dict:
+    return _answer(req.question, req.k)

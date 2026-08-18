@@ -7,5 +7,7 @@ data/chroma/
 .pytest_cache/
 *.log
 eval/results.json
+eval/FULL_EVAL_DONE.marker
+scripts/eval_run.log
 finetune/data.jsonl
 finetune/out/

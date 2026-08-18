@@ -44,7 +44,7 @@ def main() -> None:
     from eval.judge import Judge
 
     pipe = build_default_pipeline()
-    judge = None if args.retrieval_only else Judge(LLMClient())
+    judge = None if args.retrieval_only else Judge(LLMClient(model=settings.judge_model))
 
     golden = load_golden()
     if args.limit:

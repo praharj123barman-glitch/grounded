@@ -1,7 +1,7 @@
 """Central configuration for Grounded, loaded from environment or a .env file.
 
-Every tunable lives here so experiments in later phases (chunking, top_k, model
-choice) are a single config change, not a code edit scattered across files.
+Every tunable lives here so experiments (chunking, top_k, model choice, retrieval
+strategy) are a single config change, not a code edit scattered across files.
 """
 from __future__ import annotations
 
@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     google_api_key: str = ""
     llm_provider: str = "google"          # google | (openai / anthropic later)
     llm_model: str = "gemini-2.5-flash"
+    judge_model: str = "gemini-2.5-flash-lite"   # separate model for the eval judge (own daily quota)
     embedding_model: str = "models/gemini-embedding-001"
 
     # --- Ingestion / chunking (ablatable knobs) ---
@@ -39,11 +40,12 @@ class Settings(BaseSettings):
     raw_dir: Path = ROOT / "data" / "raw"
     sample_dir: Path = ROOT / "data" / "sample"
     top_k: int = 5
+    bootstrap_on_start: bool = False      # if true, the API ingests the sample corpus on startup (deploy)
 
     # --- Retrieval strategy (ablatable in Phase 4) ---
-    use_hybrid: bool = True          # BM25 + dense with reciprocal rank fusion
-    use_query_rewrite: bool = False  # expand the question into sub-queries
-    use_rerank: bool = False         # reorder candidates with an LLM reranker
+    use_hybrid: bool = True               # BM25 + dense with reciprocal rank fusion
+    use_query_rewrite: bool = False       # expand the question into sub-queries
+    use_rerank: bool = False              # reorder candidates with an LLM reranker
 
     # --- Observability (optional, no-op if unset) ---
     langfuse_public_key: str = ""

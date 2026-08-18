@@ -1,0 +1,17 @@
+# Render blueprint. In the Render dashboard: New > Blueprint, connect this repo,
+# then set the GOOGLE_API_KEY secret. The Dockerfile builds the service; the app
+# ingests the sample corpus on startup because BOOTSTRAP_ON_START is true.
+services:
+  - type: web
+    name: grounded
+    runtime: docker
+    plan: free
+    envVars:
+      - key: GOOGLE_API_KEY
+        sync: false            # set this secret in the Render dashboard
+      - key: BOOTSTRAP_ON_START
+        value: "true"
+      - key: LLM_MODEL
+        value: gemini-2.5-flash
+      - key: EMBEDDING_MODEL
+        value: models/gemini-embedding-001

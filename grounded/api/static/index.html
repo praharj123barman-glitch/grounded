@@ -17,6 +17,7 @@
     --radius:20px; --maxw:1080px; --readw:840px;
     --grad:linear-gradient(115deg,#e4d197,#aec48c 50%,#c8ead2);
     --mint:#c8ead2;
+    --accent:#96d6aa;
     --ease:cubic-bezier(.19,1,.22,1);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -159,25 +160,33 @@
   h2 em{font-family:"Instrument Serif";font-style:italic;font-weight:400}
   .lede{margin-top:16px;color:var(--muted);font-size:clamp(15px,1.8vw,18px);max-width:620px;line-height:1.62}
 
-  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
-  .p-card{position:relative;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);
-    padding:26px 24px;overflow:hidden;transition:transform .4s var(--ease),border-color .4s,background .4s}
-  .p-card:hover{transform:translateY(-6px);border-color:var(--border-2);background:var(--panel-2)}
-  .p-card::after{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .4s;
-    background:radial-gradient(120% 90% at 50% 0%,rgba(180,195,140,.14),transparent 60%)}
-  .p-card:hover::after{opacity:1}
-  .p-num{font-family:"Instrument Serif";font-size:34px;line-height:1;background:var(--grad);
-    -webkit-background-clip:text;background-clip:text;color:transparent}
-  .p-card h3{font-family:"Space Grotesk";font-size:19px;font-weight:600;margin:14px 0 8px;letter-spacing:-.01em}
-  .p-card p{font-size:14px;color:var(--muted);line-height:1.6}
+  /* ---------- borderless editorial steps (shared base) ---------- */
+  .step{position:relative;padding-top:30px;border-top:1px solid rgba(150,214,170,.15);
+    transition:border-color .3s ease-in-out}
+  .step:hover{border-top-color:rgba(150,214,170,.45)}
+  .node{position:absolute;left:0;top:0;width:7px;height:7px;border-radius:50%;transform:translateY(-50%);
+    background:rgba(190,232,207,.55);box-shadow:0 0 6px 1px rgba(150,214,170,.35);transition:all .3s ease-in-out}
+  .step:hover .node{background:#cdeedb;box-shadow:0 0 15px 3px rgba(150,214,170,.85);transform:translateY(-50%) scale(1.3)}
+  .inner{opacity:.7;transition:all .3s ease-in-out}
+  .step:hover .inner{opacity:1}
 
-  .pipe{margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
-  .pipe .step{padding:22px 18px;border-left:1px solid var(--border);position:relative}
-  .pipe .step:first-child{border-left:0}
-  .pipe .dot{width:11px;height:11px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 5px rgba(180,195,140,.12);margin-bottom:16px}
-  .pipe h4{font-family:"Space Grotesk";font-size:15.5px;font-weight:600;margin-bottom:7px}
-  .pipe p{font-size:13px;color:var(--muted);line-height:1.55}
-  .pipe .idx{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--faint);letter-spacing:.1em}
+  /* principles: 01 Retrieve / 02 Ground / 03 Refuse */
+  .steps{list-style:none;padding:0;margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:44px}
+  .snum{display:block;font-family:"Space Grotesk";font-size:clamp(54px,6.5vw,82px);font-weight:600;
+    letter-spacing:-.04em;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+  .steps h3{font-family:"Space Grotesk";font-size:20px;font-weight:600;letter-spacing:-.01em;margin:22px 0 8px;color:#fff;
+    transition:transform .3s ease-in-out}
+  .step:hover h3{transform:translateY(-2px)}
+  .steps p{font-size:14px;line-height:1.6;color:var(--muted);max-width:22rem}
+
+  /* pipeline: STEP 01..04 */
+  .pipe{list-style:none;padding:0;margin-top:44px;display:grid;grid-template-columns:repeat(4,1fr);gap:34px}
+  .pipe .step{padding-top:26px}
+  .pipe .idx{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#9ec9ac;letter-spacing:.12em;margin-bottom:8px}
+  .pipe h4{font-family:"Space Grotesk";font-size:16px;font-weight:600;margin-bottom:7px;color:#fff;
+    transition:transform .3s ease-in-out}
+  .pipe .step:hover h4{transform:translateY(-2px)}
+  .pipe p{font-size:13px;line-height:1.55;color:var(--muted)}
 
   .eval{position:relative;border:1px solid var(--border);border-radius:26px;padding:52px 40px;margin-top:44px;
     background:linear-gradient(180deg,rgba(240,234,214,.045),rgba(240,234,214,.012));overflow:hidden}
@@ -206,16 +215,12 @@
   .reveal.in{opacity:1;transform:none}
 
   @media(max-width:860px){
-    .grid3,.pipe,.stats{grid-template-columns:1fr 1fr}
-    .pipe .step{border-left:0;border-top:1px solid var(--border)}
-    .pipe .step:first-child,.pipe .step:nth-child(2){border-top:0}
+    .steps,.pipe,.stats{grid-template-columns:1fr 1fr}
   }
   @media(max-width:560px){
     header{padding:52px 0 22px}
     section.block{padding:70px 0}
-    .grid3,.pipe,.stats{grid-template-columns:1fr}
-    .pipe .step{border-top:1px solid var(--border)!important}
-    .pipe .step:first-child{border-top:0!important}
+    .steps,.pipe,.stats{grid-template-columns:1fr}
     .ask-card{flex-direction:column}
     .go{padding:13px;justify-content:center}
     .eval{padding:34px 22px}
@@ -226,6 +231,7 @@
     *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
     .reveal{opacity:1;transform:none}
     .hero-anim .word{opacity:1;transform:none}
+    .step:hover h3,.pipe .step:hover h4{transform:none}
     .track{animation:none}
   }
 </style>
@@ -294,22 +300,68 @@
       <h2>Three rules that make an answer <em>trustworthy</em>.</h2>
       <p class="lede">A raw model will confidently invent a number it does not know. Grounded is built so that cannot happen quietly.</p>
     </div>
-    <div class="grid3">
-      <div class="p-card reveal"><div class="p-num">01</div><h3>Retrieve</h3><p>Hybrid search, dense embeddings for meaning fused with BM25 keyword search for exact figures, finds the passages that actually answer the question.</p></div>
-      <div class="p-card reveal" style="transition-delay:.1s"><div class="p-num">02</div><h3>Ground</h3><p>The model answers only from those passages and attaches a verbatim citation to every claim, so each answer is checkable against its source.</p></div>
-      <div class="p-card reveal" style="transition-delay:.2s"><div class="p-num">03</div><h3>Refuse</h3><p>If the context does not support an answer, it returns a calibrated "I do not know" at zero confidence rather than hallucinating.</p></div>
-    </div>
+
+    <ol class="steps reveal">
+      <li class="step">
+        <span class="node" aria-hidden="true"></span>
+        <div class="inner">
+          <span class="snum" aria-hidden="true">01</span>
+          <h3>Retrieve</h3>
+          <p>Hybrid search, dense embeddings for meaning fused with BM25 keyword search for exact figures, finds the passages that actually answer the question.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="node" aria-hidden="true"></span>
+        <div class="inner">
+          <span class="snum" aria-hidden="true">02</span>
+          <h3>Ground</h3>
+          <p>The model answers only from those passages and attaches a verbatim citation to every claim, so each answer is checkable against its source.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="node" aria-hidden="true"></span>
+        <div class="inner">
+          <span class="snum" aria-hidden="true">03</span>
+          <h3>Refuse</h3>
+          <p>If the context does not support an answer, it returns a calibrated "I do not know" at zero confidence rather than hallucinating.</p>
+        </div>
+      </li>
+    </ol>
 
     <div class="read reveal" style="margin-top:80px">
       <div class="kicker">Request lifecycle</div>
       <h2>From question to cited answer.</h2>
     </div>
-    <div class="pipe">
-      <div class="step reveal"><div class="dot"></div><div class="idx">STEP 01</div><h4>Guard</h4><p>The question is scanned for prompt injection and PII before it reaches the model.</p></div>
-      <div class="step reveal" style="transition-delay:.08s"><div class="dot"></div><div class="idx">STEP 02</div><h4>Retrieve</h4><p>Dense and BM25 rankings are merged with Reciprocal Rank Fusion, then optionally reranked.</p></div>
-      <div class="step reveal" style="transition-delay:.16s"><div class="dot"></div><div class="idx">STEP 03</div><h4>Answer</h4><p>A constrained model returns a typed object with citations, a refusal flag, and a confidence.</p></div>
-      <div class="step reveal" style="transition-delay:.24s"><div class="dot"></div><div class="idx">STEP 04</div><h4>Verify</h4><p>An evaluation harness scores faithfulness and retrieval recall, and gates regressions in CI.</p></div>
-    </div>
+    <ol class="pipe reveal">
+      <li class="step">
+        <span class="node" aria-hidden="true"></span>
+        <div class="inner">
+          <div class="idx">STEP 01</div><h4>Guard</h4>
+          <p>The question is scanned for prompt injection and PII before it reaches the model.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="node" aria-hidden="true"></span>
+        <div class="inner">
+          <div class="idx">STEP 02</div><h4>Retrieve</h4>
+          <p>Dense and BM25 rankings are merged with Reciprocal Rank Fusion, then optionally reranked.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="node" aria-hidden="true"></span>
+        <div class="inner">
+          <div class="idx">STEP 03</div><h4>Answer</h4>
+          <p>A constrained model returns a typed object with citations, a refusal flag, and a confidence.</p>
+        </div>
+      </li>
+      <li class="step">
+        <span class="node" aria-hidden="true"></span>
+        <div class="inner">
+          <div class="idx">STEP 04</div><h4>Verify</h4>
+          <p>An evaluation harness scores faithfulness and retrieval recall, and gates regressions in CI.</p>
+        </div>
+      </li>
+    </ol>
   </section>
 
   <section class="block" id="eval">
@@ -368,7 +420,7 @@
     addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)';});
     function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)';requestAnimationFrame(loop);}
     loop();
-    var hov='a,button,.chip,input,.p-card';
+    var hov='a,button,.chip,input,.step';
     document.querySelectorAll(hov).forEach(function(el){
       el.addEventListener('mouseenter',function(){ring.classList.add('big');});
       el.addEventListener('mouseleave',function(){ring.classList.remove('big');});

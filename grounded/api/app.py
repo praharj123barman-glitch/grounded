@@ -78,9 +78,14 @@ def _answer(question: str, k: int | None) -> dict:
 
 @app.get("/")
 def root():
-    """Send visitors to the interactive API docs."""
-    from fastapi.responses import RedirectResponse
+    """Serve the landing UI, or fall back to the API docs if it is missing."""
+    from pathlib import Path
 
+    from fastapi.responses import FileResponse, RedirectResponse
+
+    index = Path(__file__).resolve().parent / "static" / "index.html"
+    if index.exists():
+        return FileResponse(str(index))
     return RedirectResponse(url="/docs")
 
 

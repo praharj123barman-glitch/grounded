@@ -1,4 +1,4 @@
-"""LLM-as-judge for generation quality (course W4.4 and W7.2).
+"""LLM-as-judge for generation quality.
 
 Scores faithfulness (is every claim supported by the retrieved context) and
 answer relevance (does the answer address the question). Needs a live LLM client.

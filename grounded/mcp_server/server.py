@@ -1,4 +1,4 @@
-"""MCP server (course W6): expose Grounded's retrieval and answering as tools any
+"""MCP server: expose Grounded's retrieval and answering as tools any
 MCP client (Claude Desktop, IDEs, other agents) can call.
 
 Run over stdio:

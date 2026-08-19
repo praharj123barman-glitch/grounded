@@ -18,19 +18,18 @@ grounded answering, the eval harness, the multi-agent flow, and the MCP server a
 run. Real numbers on the sample corpus: **recall@5 = 1.0, MRR = 0.94,
 faithfulness = 1.0** (see `eval/baseline.json`).
 
-Covers the full AI Engineer course syllabus, all 8 weeks:
+What is implemented:
 
-- [x] Week 1 — LLM fundamentals + API mastery (multi-provider client, cost logging)
-- [x] Week 2 — prompt engineering + structured outputs (Pydantic answer, defensive prompts)
-- [x] Week 3 — RAG foundations (ingest, chunking, embeddings, Chroma)
-- [x] Week 4 — advanced RAG + evaluation (hybrid, rerank, query rewrite, LLM-judge, regression gate)
-- [x] Week 5 — agents + tool use (LangGraph agent, calculator tool)
-- [x] Week 6 — LangGraph + MCP + multi-agent (planner/critic graph, MCP server)
-- [x] Week 7 — observability + guardrails + security (Langfuse shim, injection/PII guard, semantic cache)
-- [x] Week 8 — deployment + fine-tuning (FastAPI, Docker, CI; LoRA script + RAG-vs-finetune framework)
-
-Remaining polish: fill the full 14-question generation eval on fresh quota, run the
-ablation table, deploy to a live URL.
+- Provider-agnostic LLM client with token, cost, and latency logging
+- Structured, typed answers (Pydantic) with per-claim citations and a calibrated refusal path
+- Configurable ingestion: loader, recursive chunking, embeddings, Chroma index
+- Hybrid retrieval: dense embeddings + BM25 keyword, fused with Reciprocal Rank Fusion
+- Optional LLM reranking and multi-query rewriting, all ablatable from config
+- Evaluation harness: recall@k, precision@k, MRR, hit@k, LLM-as-judge faithfulness and answer relevance, and a CI regression gate
+- Agentic layer: a LangGraph tool-using agent and a multi-agent planner / retriever / answerer / critic graph
+- Guardrails (prompt-injection + PII), a semantic cache, and a Langfuse tracer shim
+- FastAPI service, Docker image, GitHub Actions CI, and an MCP server
+- Optional LoRA fine-tuning script with a RAG-vs-fine-tuning decision writeup
 
 ## Quickstart
 
@@ -89,7 +88,7 @@ grounded/
     judge.py             # LLM-as-judge faithfulness + relevance
     run_evals.py         # runs the suite, writes results.json
     regression_gate.py   # fails CI if a metric regresses vs baseline.json
-  finetune/              # Week 8: build_dataset + LoRA script (Colab) + RAG-vs-finetune doc
+  finetune/              # build_dataset + LoRA script (Colab) + RAG-vs-finetune doc
   tests/                 # 31 offline tests (deterministic fakes, no key needed)
   data/{raw,sample}/     # drop PDFs into raw/; sample/ ships an excerpt
   Dockerfile
@@ -99,5 +98,5 @@ grounded/
 ## Stack
 
 Python, LangChain, LangGraph, Google Gemini, Chroma (Qdrant next), RAGAS-style
-LLM-as-judge, Langfuse, FastAPI, Docker, GitHub Actions. Aligned to the
-"Padho with Pratyush" AI Engineer curriculum, with an evaluation-first layer on top.
+LLM-as-judge, Langfuse, FastAPI, Docker, GitHub Actions. Retrieval quality is
+measured and gated on every change, not assumed.

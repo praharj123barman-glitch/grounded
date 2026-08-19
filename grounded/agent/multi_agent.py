@@ -1,4 +1,4 @@
-"""Multi-agent flow (course W6): planner, retriever, answerer, critic.
+"""Multi-agent flow: planner, retriever, answerer, critic.
 
 A supervisor-style graph. The planner decomposes the question into sub-questions,
 the retriever gathers evidence for all of them, the answerer drafts a grounded

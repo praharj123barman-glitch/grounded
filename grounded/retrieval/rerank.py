@@ -1,7 +1,7 @@
 """Rerankers: reorder retrieved candidates so the best evidence is on top.
 
 Default is an LLM listwise reranker (no extra dependency). A cross-encoder
-reranker is available for when sentence-transformers is installed (course W4.2).
+reranker is available for when sentence-transformers is installed.
 """
 from __future__ import annotations
 

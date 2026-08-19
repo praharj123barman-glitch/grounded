@@ -1,4 +1,4 @@
-"""Optional LoRA fine-tuning (course W8.4). Colab GPU recommended; will not run on CPU.
+"""Optional LoRA fine-tuning. Colab GPU recommended; will not run on CPU.
 
 Fine-tunes a small instruction model on the Grounded Q/A pairs to demonstrate the
 workflow. For a document assistant, RAG usually beats fine-tuning (see README);

@@ -1,4 +1,4 @@
-"""Semantic cache (course W7.4): reuse a past answer when a new question is
+"""Semantic cache: reuse a past answer when a new question is
 near-identical in meaning, cutting cost and latency. Embeddings are assumed
 normalised, so cosine similarity is a dot product.
 """

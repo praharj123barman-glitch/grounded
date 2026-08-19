@@ -21,4 +21,4 @@ httpx>=0.27
 # sentence-transformers>=3.0                     # cross-encoder reranker (pulls torch)
 # ragas>=0.2                                     # extra RAG eval metrics
 # langfuse>=2.0                                  # tracing dashboard
-# transformers, peft, trl, datasets, accelerate # Week 8 LoRA fine-tuning (Colab GPU)
+# transformers, peft, trl, datasets, accelerate # LoRA fine-tuning (Colab GPU)

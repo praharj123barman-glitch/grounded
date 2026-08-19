@@ -1,7 +1,7 @@
-# Fine-tuning (course Week 8)
+# Fine-tuning
 
-This folder covers the Week 8 fine-tuning topic. Two parts: the decision (when to
-fine-tune at all) and a working LoRA script you run on a free Colab GPU.
+Two parts: the decision (when to fine-tune at all) and a working LoRA script you
+run on a free Colab GPU.
 
 ## When to fine-tune vs when to use RAG (the interview question)
 

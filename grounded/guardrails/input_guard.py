@@ -1,4 +1,4 @@
-"""Input guardrails (course W7.3, OWASP LLM Top 10).
+"""Input guardrails (OWASP LLM Top 10).
 
 Detects common prompt-injection phrasing and flags PII in the incoming question.
 Injection blocks the request; PII is flagged (and could be redacted upstream).

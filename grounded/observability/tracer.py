@@ -1,4 +1,4 @@
-"""Thin observability shim (course W7.1).
+"""Thin observability shim.
 
 If Langfuse keys are set it sends traces; otherwise it is a no-op, so nothing in
 the app depends on Langfuse being installed or configured.

@@ -30,24 +30,6 @@
   }
   ::selection{background:rgba(200,234,210,.26);color:#fff}
 
-  /* ---------- ambient aurora + grain ---------- */
-  .aurora{position:fixed;inset:-20% -10% auto;height:130vh;z-index:-3;pointer-events:none;filter:blur(30px)}
-  .aurora i{position:absolute;border-radius:50%;opacity:.6;mix-blend-mode:screen;will-change:transform}
-  .a1{width:54vw;height:54vw;left:6%;top:-16vh;background:radial-gradient(circle at 30% 30%,rgba(158,146,72,.6),transparent 62%);animation:drift1 22s var(--ease) infinite alternate}
-  .a2{width:46vw;height:46vw;right:0%;top:-6vh;background:radial-gradient(circle at 60% 40%,rgba(196,158,92,.5),transparent 62%);animation:drift2 26s var(--ease) infinite alternate}
-  .a3{width:42vw;height:42vw;left:32%;top:8vh;background:radial-gradient(circle at 50% 50%,rgba(150,190,142,.4),transparent 62%);animation:drift3 30s var(--ease) infinite alternate}
-  @keyframes drift1{to{transform:translate3d(8vw,6vh,0) scale(1.15)}}
-  @keyframes drift2{to{transform:translate3d(-7vw,9vh,0) scale(1.1)}}
-  @keyframes drift3{to{transform:translate3d(5vw,-5vh,0) scale(1.2)}}
-  .grain{position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.06;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-  .vignette{position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background:radial-gradient(120% 80% at 50% -10%,transparent 52%,rgba(0,0,0,.6) 100%)}
-  .dots{position:fixed;inset:0;z-index:-1;opacity:.4;pointer-events:none;
-    background-image:radial-gradient(rgba(240,234,214,.05) 1px,transparent 1px);background-size:26px 26px;
-    -webkit-mask-image:radial-gradient(72% 55% at 50% 4%,#000 28%,transparent 74%);
-            mask-image:radial-gradient(72% 55% at 50% 4%,#000 28%,transparent 74%)}
-
   /* ---------- custom cursor ---------- */
   .cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;
     transform:translate(-50%,-50%);mix-blend-mode:difference}
@@ -238,10 +220,6 @@
 </head>
 <body>
 
-<div class="aurora"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
-<div class="grain"></div>
-<div class="dots"></div>
-<div class="vignette"></div>
 <div class="prog" id="prog"></div>
 <div class="cur-ring" id="ring"></div>
 <div class="cur-dot" id="dot"></div>
@@ -467,15 +445,6 @@
       });
     },{threshold:.5});
     document.querySelectorAll('.num[data-count]').forEach(function(el){io.observe(el);});
-  })();
-
-  (function(){
-    if(coarse||reduce) return;
-    var au=document.querySelector('.aurora');
-    addEventListener('mousemove',function(e){
-      var x=(e.clientX/innerWidth-.5), y=(e.clientY/innerHeight-.5);
-      au.style.transform='translate('+(x*18)+'px,'+(y*14)+'px)';
-    },{passive:true});
   })();
 
   /* ================= ASK LOGIC ================= */

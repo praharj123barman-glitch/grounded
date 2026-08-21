@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#0c0b07; --bg-soft:#110f0a;
+    --bg:#0a0a0a; --bg-soft:#141414;
     --panel:rgba(240,234,214,.04); --panel-2:rgba(240,234,214,.065);
     --border:rgba(240,234,214,.10); --border-2:rgba(240,234,214,.19);
     --text:#efe9db; --muted:#a8a08a; --faint:#726b56;
@@ -47,16 +47,17 @@
   .read{max-width:var(--readw);margin:0 auto}
 
   /* ---------- nav ---------- */
-  nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(14px) saturate(120%);
-    background:linear-gradient(to bottom,rgba(12,11,7,.84),rgba(12,11,7,0));
-    border-bottom:1px solid rgba(240,234,214,.05)}
+  nav{position:sticky;top:0;z-index:40;background:var(--bg);
+    border-bottom:1px solid rgba(255,255,255,.07)}
   .nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:11px;font-family:"Space Grotesk";font-weight:600;letter-spacing:-.02em;font-size:17px}
   .mark{width:28px;height:28px;border-radius:9px;background:var(--grad);display:grid;place-items:center;
     box-shadow:0 8px 26px -8px rgba(200,180,120,.7)}
   .mark svg{width:16px;height:16px}
-  .brand small{font-weight:500;color:var(--faint);border:1px solid var(--border);padding:2px 8px;
-    border-radius:999px;font-size:11px;letter-spacing:.06em;font-family:"Inter"}
+  .brand-name{font-family:"Space Grotesk";font-weight:600}
+  .brand-tag{font-family:"Inter";font-weight:500;font-size:12px;letter-spacing:.02em;color:var(--muted);
+    padding-left:12px;border-left:1px solid var(--border)}
+  @media(max-width:760px){.brand-tag{display:none}}
   .nav-links{display:flex;gap:6px;align-items:center}
   .ghost{color:var(--muted);font-size:14px;padding:8px 15px;border-radius:11px;border:1px solid transparent;transition:.22s var(--ease)}
   .ghost:hover{color:var(--text);background:var(--panel);border-color:var(--border)}
@@ -84,7 +85,7 @@
     -webkit-mask-composite:xor;mask-composite:exclude;opacity:.6;transition:opacity .3s}
   .ask:focus-within::before{opacity:1}
   .ask-card{position:relative;display:flex;gap:8px;padding:9px;border-radius:19px;
-    background:rgba(16,14,9,.72);backdrop-filter:blur(8px);
+    background:rgba(20,20,20,.72);backdrop-filter:blur(8px);
     box-shadow:0 40px 100px -46px rgba(150,140,80,.6),inset 0 1px 0 rgba(255,255,255,.05)}
   #q{flex:1;background:transparent;border:0;outline:0;color:var(--text);font-size:16px;padding:13px 15px;font-family:inherit}
   #q::placeholder{color:var(--faint)}
@@ -228,7 +229,8 @@
   <div class="nav-in">
     <div class="brand">
       <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 4v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V7l7-4z" stroke="#0e130c" stroke-width="2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#0e130c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      Grounded <small>RAG</small>
+      <span class="brand-name">Grounded</span>
+      <span class="brand-tag">Agentic RAG research assistant</span>
     </div>
     <div class="nav-links">
       <a class="ghost mag" href="#how">How it works</a>
@@ -240,7 +242,6 @@
 </nav>
 
 <header class="wrap">
-  <div class="eyebrow fade-up" style="animation-delay:.05s">Agentic RAG research assistant</div>
   <h1 class="hero-anim" id="h1">
     <span class="word" style="animation-delay:.06s">Ask</span>
     <span class="word" style="animation-delay:.12s">your</span>
